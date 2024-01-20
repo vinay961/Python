@@ -33,5 +33,9 @@
 
 # dictionaries --> it is a collection which is ordered, changable, but doesn't allow duplicate items.
 
+dic = {
+    "name":"Vinay",
+    "Dept":"CSE"
+}
 
-
+print(type(dic))
