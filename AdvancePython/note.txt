@@ -1,0 +1,19 @@
+mutable --> here we can change the data types.
+
+>>> username = "Vinay"
+>>> username
+'Vinay'
+>>> username = "Rai"
+>>> username
+'Rai'
+
+immutable --> we cann't change the value of data type . example - string
+but in above code we can say that value of username get change, but it doesn't actually.
+
+username --> "Vinay"
+
+but when we gave the username Rai then 
+username   "Vinay"(It will get collected as garbage value and then deleted)
+   '-------> "Rai"
+
+   Note--> we need to note that username Vinay is not get change.
