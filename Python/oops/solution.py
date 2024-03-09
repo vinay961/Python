@@ -61,3 +61,4 @@ new_ev = ElectricCar("Tesla","nhiPta","80kWh")
 print(my_new_Car.general_description())
 print(Car.general_description())
 print(my_new_Car.fuel_type())
+
