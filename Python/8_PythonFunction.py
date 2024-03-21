@@ -46,9 +46,23 @@ def sum_all(*args):
       print(i*2)   # gives us tuple which can be modified by us
     return sum(args)
 
-print(sum_all(1,2))
-print(sum_all(1,2,3,4,5))
-print(sum_all(1,2,3,4,5,6,7,8,9))
+# print(sum_all(1,2))
+# print(sum_all(1,2,3,4,5))
+# print(sum_all(1,2,3,4,5,6,7,8,9))
 
 
+# Create a function that accepts any number of keyword arguments and points them in the format key:value
+# def func(name="Vinay", power="Education"):
+#     print(name, power)
+    
+# func("Janhavi","Love")
+
+def func(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+        
+func(name="Vinay",work="CSE")
+func(name="Janhavi",work="AI")
+func(name="Ram")
+    
 
