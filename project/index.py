@@ -1,58 +1,68 @@
-# imports module 
 from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, TableStyle 
 from reportlab.lib import colors 
 from reportlab.lib.pagesizes import A4 
 from reportlab.lib.styles import getSampleStyleSheet 
 
-# data which we are going to display as tables 
-DATA = [ 
-	[ "Date" , "Name", "Subscription", "Price (Rs.)" ], 
-	[ 
-		"16/11/2020", 
-		"Full Stack Development with React & Node JS - Live", 
-		"Lifetime", 
-		"10,999.00/-", 
-	], 
-	[ "16/11/2020", "Your Bag", "", "9,999.00/-"], 
-	[ "Sub Total", "", "", "20,9998.00/-"], 
-	[ "Discount", "", "", "-3,000.00/-"], 
-	[ "Total", "", "", "17,998.00/-"], 
-] 
+# Function to get item details from user
+def get_item_details():
+    date = input("Enter Date (DD/MM/YYYY): ")
+    name = input("Enter Item Name: ")
+    brand = input("Enter Brand: ")
+    price = input("Enter Price (Rs.): ")
+    return [date, name, brand, price]
 
-# creating a Base Document Template of page size A4 
-pdf = SimpleDocTemplate( "receipt.pdf" , pagesize = A4 ) 
+# Main function to generate receipt
+def generate_receipt():
+    # Create an empty list to hold data
+    DATA = [["Date", "Name", "Brand", "Price (Rs.)"]]
+    
+    # Get item details from the user
+    while True:
+        item_details = get_item_details()
+        DATA.append(item_details)
+        add_more = input("Do you want to add another item? (yes/no): ").lower()
+        if add_more != 'yes':
+            break
+    
+    # Calculate subtotal, discount, and total
+    subtotal = sum(float(item[3].replace(',', '').replace('/-', '')) for item in DATA[1:])
+    discount = 300.00 
+    total = subtotal - discount
+    
+    # Add subtotal, discount, and total to the data
+    DATA.append(["Sub Total", "", "", f"{subtotal:,.2f}/-"])
+    DATA.append(["Discount", "", "", f"-{discount:,.2f}/-"])
+    DATA.append(["Total", "", "", f"{total:,.2f}/-"])
 
-# standard stylesheet defined within reportlab itself 
-styles = getSampleStyleSheet() 
+    # Creating a Base Document Template of page size A4 
+    pdf = SimpleDocTemplate("receipt.pdf", pagesize=A4) 
 
-# fetching the style of Top level heading (Heading1) 
-title_style = styles[ "Heading1" ] 
+    # Standard stylesheet defined within reportlab itself 
+    styles = getSampleStyleSheet() 
 
-# 0: left, 1: center, 2: right 
-title_style.alignment = 1
+    # Fetching the style of Top level heading (Heading1) 
+    title_style = styles["Heading1"] 
 
-# creating the paragraph with 
-# the heading text and passing the styles of it 
-title = Paragraph( "Your_Receipt" , title_style ) 
+    title_style.alignment = 1
 
-# creates a Table Style object and in it, 
-# defines the styles row wise 
-# the tuples which look like coordinates 
-# are nothing but rows and columns 
-style = TableStyle( 
-	[ 
-		( "BOX" , ( 0, 0 ), ( -1, -1 ), 1 , colors.black ), 
-		( "GRID" , ( 0, 0 ), ( 4 , 4 ), 1 , colors.black ), 
-		( "BACKGROUND" , ( 0, 0 ), ( 3, 0 ), colors.gray ), 
-		( "TEXTCOLOR" , ( 0, 0 ), ( -1, 0 ), colors.whitesmoke ), 
-		( "ALIGN" , ( 0, 0 ), ( -1, -1 ), "CENTER" ), 
-		( "BACKGROUND" , ( 0 , 1 ) , ( -1 , -1 ), colors.beige ), 
-	] 
-) 
+    # Creating the paragraph with the heading text and passing the styles of it 
+    title = Paragraph("Your Receipt", title_style) 
 
-# creates a table object and passes the style to it 
-table = Table( DATA , style = style ) 
+    # Creates a Table Style object and defines the styles row-wise 
+    style = TableStyle([ 
+        ("BOX", (0, 0), (-1, -1), 1, colors.black), 
+        ("GRID", (0, 0), (4, 4), 1, colors.black), 
+        ("BACKGROUND", (0, 0), (3, 0), colors.gray), 
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke), 
+        ("ALIGN", (0, 0), (-1, -1), "CENTER"), 
+        ("BACKGROUND", (0, 1), (-1, -1), colors.beige), 
+    ]) 
 
-# final step which builds the 
-# actual pdf putting together all the elements 
-pdf.build([ title , table ]) 
+    # Creates a table object and passes the style to it 
+    table = Table(DATA, style=style) 
+
+    # Final step which builds the actual pdf putting together all the elements 
+    pdf.build([title, table])
+
+# Call the function to generate receipt
+generate_receipt()
