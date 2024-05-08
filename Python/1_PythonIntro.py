@@ -23,7 +23,7 @@
 # print(5+3)
 # print('ram'+'shyam')
 # print(2,3)
-# print(2+"Vinay") It gives us error bcz we cann't concatenate the diffirent data types with each other.
+# print(2+"Vinay")  #It gives us error bcz we cann't concatenate the diffirent data types with each other.
 
 # Note--> That we can use the global keyword to declare any variable global.
 
@@ -31,8 +31,8 @@
 # Now to understand the concept of immutable and mutable we have to understand the inner working python
 # a = 10
 # b = a
-# print(a,b) # output-> 10 10
+# print(a,b) # output-> 10,10
 # b = 20
-# print(a,b) # output-> 10 20
+# print(a,b) # output-> 10,20
 
              
