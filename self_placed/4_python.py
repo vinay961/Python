@@ -24,7 +24,7 @@ def greet(name,message):
 
 def example_function(arg1, *args):
     print(f"arg1: {arg1}")
-    print(f"args: {args}")
+    print(f"args: {args}") 
     print(type(args))   # tuples
     
 

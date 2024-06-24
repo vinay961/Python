@@ -40,35 +40,35 @@
 
 
 # Custom Exception
-# class Error(Exception):
-#     pass
+class Error(Exception):
+    pass
 
-# class ValueTooSmallError(Error):
-#     pass
+class ValueTooSmallError(Error):
+    pass
 
-# class ValueTooLargeError(Error):
-#     pass
+class ValueTooLargeError(Error):
+    pass
 
-# number = 10;
+number = 10;
 
-# while True:
-#     try:
-#         num = int(input("Enter a number:"))
-#         if num < number:
-#             raise ValueTooSmallError
-#         elif num > number:
-#             raise ValueTooLargeError
-#         else:
-#             print("You gussed it right.")
+while True:
+    try:
+        num = int(input("Enter a number:"))
+        if num < number:
+            raise ValueTooSmallError
+        elif num > number:
+            raise ValueTooLargeError
+        else:
+            print("You gussed it right.")
     
-#     except ValueTooLargeError:
-#         print("Entered value is large.")
+    except ValueTooLargeError:
+        print("Entered value is large.")
         
-#     except ValueTooSmallError:
-#         print("Entered value is small.")
+    except ValueTooSmallError:
+        print("Entered value is small.")
         
-#     except Error:
-#         print("Handling all other errors.")
+    except Error:
+        print("Handling all other errors.")
 
 
 

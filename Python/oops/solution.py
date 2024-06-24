@@ -10,7 +10,7 @@ class Car:
         
     def full_name(self):
         return f"{self.__brand} {self.model}"
-    
+                                            
     def fuel_type(self):
         return "Petrol or Desiel"
     

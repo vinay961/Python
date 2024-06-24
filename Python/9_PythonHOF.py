@@ -30,8 +30,8 @@ print(list(result1))
 result2 = filter(lambda x: x>3, data)
 print(list(result2))
 
-result3 = reduce(lambda x,y: x+y, data)
-print(result3)
+# result3 = reduce(lambda x,y: x+y, data)
+# print(result3)
     
 
 
