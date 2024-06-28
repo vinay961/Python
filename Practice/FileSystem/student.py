@@ -31,22 +31,40 @@ import csv
 
 students = []
 
-with open("student.csv") as file:
-    for line in file:
-        name,address = line.rstrip().split(",")
-        student = {"name":name, "address":address}
+# with open("student.csv") as file:
+#     for line in file:
+#         name,address = line.rstrip().split(",")
+#         student = {"name":name, "address":address}
         
-        if name != 'Student_Name':
-            students.append(student)
+#         if name != 'Student_Name':
+#             students.append(student)
 
 # for info in sorted(students):  # here, sorting is not done properly so to sort them according name or house we need to implement different feature.
 #     print(info)
 
-def get_name(student):
-    return student["name"]
+# below methods can be defined using lamda also.
+# def get_name(student):
+#     return student["name"]
 
-def get_address(student):
-    return student["address"]
+# def get_address(student):
+#     return student["address"]
 
-for student in sorted(students,key=get_address):
+# for student in sorted(students,key= lambda student: student["name"]):
+#     print(f"{student['name']} is in {student['address']}")
+
+
+# Another way of reading a csv file is using reader method of csv
+
+with open("student.csv") as file:
+    # reader = csv.reader(file) # here reader method read the csv file, and it remaind the commas,and other things.
+    # for row in reader:
+    #     if row[0] != "Student_Name":
+    #         students.append({"name":row[0],"address":row[1]})
+    reader = csv.DictReader(file)
+    for row in reader:
+        students.append({"name":row["Student_Name"] , "address":row["Student_Address"]})
+        
+for student in sorted(students, key=lambda student: student["name"]):
     print(f"{student['name']} is in {student['address']}")
+    
+    
