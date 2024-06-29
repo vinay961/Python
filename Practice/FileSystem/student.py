@@ -60,7 +60,7 @@ with open("student.csv") as file:
     # for row in reader:
     #     if row[0] != "Student_Name":
     #         students.append({"name":row[0],"address":row[1]})
-    reader = csv.DictReader(file)
+    reader = csv.DictReader(file) # here using DictReader instead of reader is because suppose if someone interchange the name and address column then in above code row[0] gives address instead of name which cause our code to break down, so to get prevent from it we use it .
     for row in reader:
         students.append({"name":row["Student_Name"] , "address":row["Student_Address"]})
         
