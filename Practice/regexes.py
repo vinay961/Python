@@ -26,13 +26,19 @@ import re
                           before the newline at the end of string.
                 8-> []    set of characters that have to include
                 9-> [^]   compliment of the set
-
+                10-> \d   decimal number
+                11-> \D   not a number
+                12-> \s   whitespace character
+                13-> \S   not a whitespace character
+                14-> \w   words character including numbers and underscores
+                15-> \W   not include words character
+                
 '''
 
 while True:
     email = input("What's your email? ")
     
-    if re.search(r"^\w+@\w+\.in$",email):
+    if re.search(r"^\w(\.)?\w+@(\w+\.)?\w+\.(com|edu|gov|in)$",email):
         print("Valid")
         break
     else:
